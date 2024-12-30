@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Reactive;
+using System.Threading.Tasks;
 using ReactiveUI;
 using SudokuSolver.Models;
 
@@ -24,7 +25,7 @@ public class BoardViewModel : ViewModelBase
         1   , null, 9   ,    null, null, null,    null, null, 4   ,
     ];*/
     
-    private readonly List<int?> _seed =
+    /*private readonly List<int?> _seed = //medium
     [
         6   , null, 9   ,    8   , null, null   ,    7   , 5   , 2   ,
         5   , null, 1,    6, 7, null   ,    4, 8, 9,
@@ -37,6 +38,51 @@ public class BoardViewModel : ViewModelBase
         2, null   , 8,    3, 9, 6   ,    5   , null, 7,
         null   , null   , 3   ,    2, null, null,    null   , 9, 1,
         null   , null, 6   ,    null, null, 7,    null, null, null   ,
+    ];*/
+    
+    /*private readonly List<int?> _seed = //hard
+    [
+        null   , null, 4   ,    9   , null, null   ,    5   , null   , 6   ,
+        null   , 1, null,    null, null, 3   ,    null, 9, null,
+        null   , 9, 2   ,    null   , null   , null,    3, null, 7   ,
+        
+        3   , null, null,    6   , 7, null,    null, null   , 8   ,
+        null, null, null   ,    null   , null, 1   ,    2   , null, null   ,
+        null   , null, null   ,    null   , null   , null,    null   , 3   , null,
+        
+        null, null   , 6,    1, null, null   ,    8   , null, null,
+        1   , null   , 8   ,    null, null, 6,    null   , 5, 4,
+        null   , null, 3   ,    null, 8, 4,    null, null, 9   ,
+    ];*/
+    
+    /*private readonly List<int?> _seed = //expert
+    [
+        null, null, null,    null, null, null,    null, 7, null,
+        null, null, null,    null, 1, 7,    null, 2, null,
+        2, 1, 7,    null, null, null,    8, 6, 3,
+        
+        null, 8, 6,    null, null, 2,    7, null, null,
+        null, null, 5,    7, null, null,    null, null, null,
+        4, 7, null,    1, null, null,    null, 9, 6,
+        
+        null, 5, 9,    null, null, null,    6, 3, null,
+        6, null, 3,    9, null, 8,    null, null, null,
+        null, null, null,    6, null, null,    2, null, 9,
+    ];*/
+    
+    private readonly List<int?> _seed = //master
+    [
+        null, 8, 7,    null, null, 3,    9, null, null,
+        null, 5, null,    null, null, null,    null, null, 3,
+        null, null, null,    null, 6, 5,    null, 2, 7,
+
+        3, null, null,    null, null, null,    null, null, 1,
+        null, null, null,    null, null, 8,    null, null, null,
+        null, 9, null,    null, 7, 4,    null, null, null,
+
+        4, 7, null,    null, null, null,    null, null, 2,
+        null, 6, 2,    4, null, 7,    5, null, 8,
+        null, 3, null,    null, 1, null,    null, 6, null,
     ];
     
     private double _width = 300;
@@ -69,25 +115,87 @@ public class BoardViewModel : ViewModelBase
     
     public ReactiveCommand<Unit, Unit> Solve { get; }
 
-    void RunSolve()
+    private async Task RunSolve()
     {
         bool didFindValues;
 
         do
         {
-            var foundValues = Cells.Where(c => c.PossibleValues.Count == 1)
-                .ToList();
-
-            didFindValues = foundValues.Count > 0;
-
-            foundValues.ForEach(c => c.Value = c.PossibleValues.First());
-
-            if (didFindValues)
-            {
-                CalculatePossibleValues();
-            }
+            CalculatePossibleValues();
+            
+            didFindValues = await SolveSinglePossibleValuesAsync();
         }
         while(didFindValues);
+    }
+
+    private async Task<bool> SolveSinglePossibleValuesAsync()
+    {
+        var foundValues = Cells.Where(c => c.PossibleValues.Count == 1)
+            .ToList();
+
+        if (foundValues.Count >= 1)
+        {
+            foundValues.ForEach(c => c.Value = c.PossibleValues.First());
+            return true;
+        }
+
+        return await SolveUniquePossibleValuesAsync();
+    }
+    
+    private async Task<bool> SolveUniquePossibleValuesAsync()
+    {
+        bool foundValue = false;
+        
+        Cells
+            .ToList()
+            .ForEach(c =>
+            {
+                var uniquePossibleValues = c.PossibleValues
+                    .Where(v =>
+                        c.Row
+                            .Where(rc => rc != c) //find all other cells in this cells row.
+                            .All(rc => !rc.PossibleValues.Contains(v))//Check that no other cells in this row contain can be this possible value. Or the cell being inspected is the only cell in this row that can be that possible value.
+                    )
+                    .ToList(); //Check 
+
+                if (uniquePossibleValues.Count >= 1)
+                {
+                    c.Value = uniquePossibleValues[0];
+                    foundValue = true;
+                    return;
+                }
+                
+                uniquePossibleValues = c.PossibleValues
+                    .Where(v =>
+                            c.Column
+                                .Where(rc => rc != c) //find all other cells in this cells row.
+                                .All(rc => !rc.PossibleValues.Contains(v))//Check that no other cells in this row contain can be this possible value. Or the cell being inspected is the only cell in this row that can be that possible value.
+                    )
+                    .ToList(); //Check 
+
+                if (uniquePossibleValues.Count >= 1)
+                {
+                    c.Value = uniquePossibleValues[0];
+                    foundValue = true;
+                    return;
+                }
+                
+                uniquePossibleValues = c.PossibleValues
+                    .Where(v =>
+                            c.SubGrid
+                                .Where(rc => rc != c) //find all other cells in this cells row.
+                                .All(rc => !rc.PossibleValues.Contains(v))//Check that no other cells in this row contain can be this possible value. Or the cell being inspected is the only cell in this row that can be that possible value.
+                    )
+                    .ToList(); //Check 
+
+                if (uniquePossibleValues.Count >= 1)
+                {
+                    c.Value = uniquePossibleValues[0];
+                    foundValue = true;
+                }
+            });
+
+        return foundValue;
     }
 
     private void CalculatePossibleValues()
@@ -97,7 +205,7 @@ public class BoardViewModel : ViewModelBase
     
     public BoardViewModel()
     {
-        Solve = ReactiveCommand.Create(RunSolve);
+        Solve = ReactiveCommand.CreateFromTask(RunSolve);
         
         for (int i = 0; i < 9; i++)
         {
