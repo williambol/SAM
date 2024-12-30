@@ -1,0 +1,113 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="clr-namespace:SudokuSolver.ViewModels"
+             xmlns:views="clr-namespace:SudokuSolver.Views"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:DataType="vm:BoardViewModel"
+             x:Class="SudokuSolver.Views.Board">
+    <Design.DataContext>
+        <!-- This only sets the DataContext for the previewer in an IDE,
+             to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
+        <vm:BoardViewModel/>
+    </Design.DataContext>
+    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
+        <Border Height="{Binding Height}" Width="{Binding Width}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+            <StackPanel HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                <Grid ColumnDefinitions="*,*,*,*,*,*,*,*,*" RowDefinitions="*,*,*,*,*,*,*,*,*" Margin="10">
+                <views:Cell Grid.Row="0" Grid.Column="0" DataContext="{Binding Cells[0]}"/>
+                <views:Cell Grid.Row="0" Grid.Column="1" DataContext="{Binding Cells[1]}"/>
+                <views:Cell Grid.Row="0" Grid.Column="2" DataContext="{Binding Cells[2]}"/>
+                <views:Cell Grid.Row="0" Grid.Column="3" DataContext="{Binding Cells[3]}"/>
+                <views:Cell Grid.Row="0" Grid.Column="4" DataContext="{Binding Cells[4]}"/>
+                <views:Cell Grid.Row="0" Grid.Column="5" DataContext="{Binding Cells[5]}"/>
+                <views:Cell Grid.Row="0" Grid.Column="6" DataContext="{Binding Cells[6]}"/>
+                <views:Cell Grid.Row="0" Grid.Column="7" DataContext="{Binding Cells[7]}"/>
+                <views:Cell Grid.Row="0" Grid.Column="8" DataContext="{Binding Cells[8]}"/>
+                
+                <views:Cell Grid.Row="1" Grid.Column="0" DataContext="{Binding Cells[9]}"/>
+                <views:Cell Grid.Row="1" Grid.Column="1" DataContext="{Binding Cells[10]}"/>
+                <views:Cell Grid.Row="1" Grid.Column="2" DataContext="{Binding Cells[11]}"/>
+                <views:Cell Grid.Row="1" Grid.Column="3" DataContext="{Binding Cells[12]}"/>
+                <views:Cell Grid.Row="1" Grid.Column="4" DataContext="{Binding Cells[13]}"/>
+                <views:Cell Grid.Row="1" Grid.Column="5" DataContext="{Binding Cells[14]}"/>
+                <views:Cell Grid.Row="1" Grid.Column="6" DataContext="{Binding Cells[15]}"/>
+                <views:Cell Grid.Row="1" Grid.Column="7" DataContext="{Binding Cells[16]}"/>
+                <views:Cell Grid.Row="1" Grid.Column="8" DataContext="{Binding Cells[17]}"/>
+                
+                <views:Cell Grid.Row="2" Grid.Column="0" DataContext="{Binding Cells[18]}"/>
+                <views:Cell Grid.Row="2" Grid.Column="1" DataContext="{Binding Cells[19]}"/>
+                <views:Cell Grid.Row="2" Grid.Column="2" DataContext="{Binding Cells[20]}"/>
+                <views:Cell Grid.Row="2" Grid.Column="3" DataContext="{Binding Cells[21]}"/>
+                <views:Cell Grid.Row="2" Grid.Column="4" DataContext="{Binding Cells[22]}"/>
+                <views:Cell Grid.Row="2" Grid.Column="5" DataContext="{Binding Cells[23]}"/>
+                <views:Cell Grid.Row="2" Grid.Column="6" DataContext="{Binding Cells[24]}"/>
+                <views:Cell Grid.Row="2" Grid.Column="7" DataContext="{Binding Cells[25]}"/>
+                <views:Cell Grid.Row="2" Grid.Column="8" DataContext="{Binding Cells[26]}"/>
+                
+                <views:Cell Grid.Row="3" Grid.Column="0" DataContext="{Binding Cells[27]}"/>
+                <views:Cell Grid.Row="3" Grid.Column="1" DataContext="{Binding Cells[28]}"/>
+                <views:Cell Grid.Row="3" Grid.Column="2" DataContext="{Binding Cells[29]}"/>
+                <views:Cell Grid.Row="3" Grid.Column="3" DataContext="{Binding Cells[30]}"/>
+                <views:Cell Grid.Row="3" Grid.Column="4" DataContext="{Binding Cells[31]}"/>
+                <views:Cell Grid.Row="3" Grid.Column="5" DataContext="{Binding Cells[32]}"/>
+                <views:Cell Grid.Row="3" Grid.Column="6" DataContext="{Binding Cells[33]}"/>
+                <views:Cell Grid.Row="3" Grid.Column="7" DataContext="{Binding Cells[34]}"/>
+                <views:Cell Grid.Row="3" Grid.Column="8" DataContext="{Binding Cells[35]}"/>
+                
+                <views:Cell Grid.Row="4" Grid.Column="0" DataContext="{Binding Cells[36]}"/>
+                <views:Cell Grid.Row="4" Grid.Column="1" DataContext="{Binding Cells[37]}"/>
+                <views:Cell Grid.Row="4" Grid.Column="2" DataContext="{Binding Cells[38]}"/>
+                <views:Cell Grid.Row="4" Grid.Column="3" DataContext="{Binding Cells[39]}"/>
+                <views:Cell Grid.Row="4" Grid.Column="4" DataContext="{Binding Cells[40]}"/>
+                <views:Cell Grid.Row="4" Grid.Column="5" DataContext="{Binding Cells[41]}"/>
+                <views:Cell Grid.Row="4" Grid.Column="6" DataContext="{Binding Cells[42]}"/>
+                <views:Cell Grid.Row="4" Grid.Column="7" DataContext="{Binding Cells[43]}"/>
+                <views:Cell Grid.Row="4" Grid.Column="8" DataContext="{Binding Cells[44]}"/>
+                
+                <views:Cell Grid.Row="5" Grid.Column="0" DataContext="{Binding Cells[45]}"/>
+                <views:Cell Grid.Row="5" Grid.Column="1" DataContext="{Binding Cells[46]}"/>
+                <views:Cell Grid.Row="5" Grid.Column="2" DataContext="{Binding Cells[47]}"/>
+                <views:Cell Grid.Row="5" Grid.Column="3" DataContext="{Binding Cells[48]}"/>
+                <views:Cell Grid.Row="5" Grid.Column="4" DataContext="{Binding Cells[49]}"/>
+                <views:Cell Grid.Row="5" Grid.Column="5" DataContext="{Binding Cells[50]}"/>
+                <views:Cell Grid.Row="5" Grid.Column="6" DataContext="{Binding Cells[51]}"/>
+                <views:Cell Grid.Row="5" Grid.Column="7" DataContext="{Binding Cells[52]}"/>
+                <views:Cell Grid.Row="5" Grid.Column="8" DataContext="{Binding Cells[53]}"/>
+                
+                <views:Cell Grid.Row="6" Grid.Column="0" DataContext="{Binding Cells[54]}"/>
+                <views:Cell Grid.Row="6" Grid.Column="1" DataContext="{Binding Cells[55]}"/>
+                <views:Cell Grid.Row="6" Grid.Column="2" DataContext="{Binding Cells[56]}"/>
+                <views:Cell Grid.Row="6" Grid.Column="3" DataContext="{Binding Cells[57]}"/>
+                <views:Cell Grid.Row="6" Grid.Column="4" DataContext="{Binding Cells[58]}"/>
+                <views:Cell Grid.Row="6" Grid.Column="5" DataContext="{Binding Cells[59]}"/>
+                <views:Cell Grid.Row="6" Grid.Column="6" DataContext="{Binding Cells[60]}"/>
+                <views:Cell Grid.Row="6" Grid.Column="7" DataContext="{Binding Cells[61]}"/>
+                <views:Cell Grid.Row="6" Grid.Column="8" DataContext="{Binding Cells[62]}"/>
+                
+                <views:Cell Grid.Row="7" Grid.Column="0" DataContext="{Binding Cells[63]}"/>
+                <views:Cell Grid.Row="7" Grid.Column="1" DataContext="{Binding Cells[64]}"/>
+                <views:Cell Grid.Row="7" Grid.Column="2" DataContext="{Binding Cells[65]}"/>
+                <views:Cell Grid.Row="7" Grid.Column="3" DataContext="{Binding Cells[66]}"/>
+                <views:Cell Grid.Row="7" Grid.Column="4" DataContext="{Binding Cells[67]}"/>
+                <views:Cell Grid.Row="7" Grid.Column="5" DataContext="{Binding Cells[68]}"/>
+                <views:Cell Grid.Row="7" Grid.Column="6" DataContext="{Binding Cells[69]}"/>
+                <views:Cell Grid.Row="7" Grid.Column="7" DataContext="{Binding Cells[70]}"/>
+                <views:Cell Grid.Row="7" Grid.Column="8" DataContext="{Binding Cells[71]}"/>
+                
+                <views:Cell Grid.Row="8" Grid.Column="0" DataContext="{Binding Cells[72]}"/>
+                <views:Cell Grid.Row="8" Grid.Column="1" DataContext="{Binding Cells[73]}"/>
+                <views:Cell Grid.Row="8" Grid.Column="2" DataContext="{Binding Cells[74]}"/>
+                <views:Cell Grid.Row="8" Grid.Column="3" DataContext="{Binding Cells[75]}"/>
+                <views:Cell Grid.Row="8" Grid.Column="4" DataContext="{Binding Cells[76]}"/>
+                <views:Cell Grid.Row="8" Grid.Column="5" DataContext="{Binding Cells[77]}"/>
+                <views:Cell Grid.Row="8" Grid.Column="6" DataContext="{Binding Cells[78]}"/>
+                <views:Cell Grid.Row="8" Grid.Column="7" DataContext="{Binding Cells[79]}"/>
+                <views:Cell Grid.Row="8" Grid.Column="8" DataContext="{Binding Cells[80]}"/>
+            </Grid>
+                <Button Command="{Binding Solve}">Solve</Button>
+            </StackPanel>
+        </Border>
+    </ScrollViewer>
+</UserControl>

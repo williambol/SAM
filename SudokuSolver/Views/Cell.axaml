@@ -1,0 +1,36 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="clr-namespace:SudokuSolver.ViewModels"
+             xmlns:converters="clr-namespace:SudokuSolver.Converters"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:DataType="vm:CellViewModel"
+             x:Class="SudokuSolver.Views.Cell">
+    <UserControl.Resources>
+        <converters:IndexToThicknessConverter x:Key="IndexToThicknessConverter" />
+        <converters:HasNoValueConverter x:Key="HasNoValueConverter" />
+        <converters:PossibleValuesConverter x:Key="PossibleValuesConverter" />
+    </UserControl.Resources>
+    <Design.DataContext>
+        <!-- This only sets the DataContext for the previewer in an IDE,
+             to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
+        <vm:CellViewModel/>
+    </Design.DataContext>
+    <Border HorizontalAlignment="Stretch" VerticalAlignment="Stretch" BorderThickness="{Binding Point, Converter={StaticResource IndexToThicknessConverter}}" BorderBrush="Gray">
+        <RelativePanel HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+            <NumericUpDown BorderBrush="Transparent" BorderThickness="0" ShowButtonSpinner="False" Minimum="1" Maximum="9" Value="{Binding Value}" IsFocused="{Binding IsFocused, Mode=OneWayToSource}" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignTopWithPanel="True" RelativePanel.AlignBottomWithPanel="True" ZIndex="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
+            <Grid RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignTopWithPanel="True" RelativePanel.AlignBottomWithPanel="True" ZIndex="1" ColumnDefinitions="*,*,*" RowDefinitions="*,*,*" IsVisible="{Binding Value, Converter={StaticResource HasNoValueConverter}}">
+                <TextBlock Grid.Row="0" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" Text="1" IsVisible="{Binding PossibleValues, Converter={StaticResource PossibleValuesConverter}, ConverterParameter=1}"/>
+                <TextBlock Grid.Row="0" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Text="2" IsVisible="{Binding PossibleValues, Converter={StaticResource PossibleValuesConverter}, ConverterParameter=2}"/>
+                <TextBlock Grid.Row="0" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" Text="3" IsVisible="{Binding PossibleValues, Converter={StaticResource PossibleValuesConverter}, ConverterParameter=3}"/>
+                <TextBlock Grid.Row="1" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" Text="4" IsVisible="{Binding PossibleValues, Converter={StaticResource PossibleValuesConverter}, ConverterParameter=4}"/>
+                <TextBlock Grid.Row="1" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Text="5" IsVisible="{Binding PossibleValues, Converter={StaticResource PossibleValuesConverter}, ConverterParameter=5}"/>
+                <TextBlock Grid.Row="1" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" Text="6" IsVisible="{Binding PossibleValues, Converter={StaticResource PossibleValuesConverter}, ConverterParameter=6}"/>
+                <TextBlock Grid.Row="2" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" Text="7" IsVisible="{Binding PossibleValues, Converter={StaticResource PossibleValuesConverter}, ConverterParameter=7}"/>
+                <TextBlock Grid.Row="2" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Text="8" IsVisible="{Binding PossibleValues, Converter={StaticResource PossibleValuesConverter}, ConverterParameter=8}"/>
+                <TextBlock Grid.Row="2" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" Text="9" IsVisible="{Binding PossibleValues, Converter={StaticResource PossibleValuesConverter}, ConverterParameter=9}"/>
+            </Grid>
+        </RelativePanel>
+    </Border>
+</UserControl>
