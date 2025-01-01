@@ -75,4 +75,18 @@ public class CellViewModel : ViewModelBase
         
         PossibleValues = possibleValues;
     }
+    
+    public void RemovePossibleValues(List<int> possibleValues)
+    {
+        if (Value != null)
+        {
+            PossibleValues = [];
+            return;
+        }
+        
+        List<int> currentPossibleValues = [..PossibleValues];
+        currentPossibleValues = currentPossibleValues.Except(possibleValues).ToList();
+        
+        PossibleValues = currentPossibleValues;
+    }
 }

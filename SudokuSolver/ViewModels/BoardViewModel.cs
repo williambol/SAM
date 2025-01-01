@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -70,7 +71,7 @@ public class BoardViewModel : ViewModelBase
         null, null, null,    6, null, null,    2, null, 9,
     ];*/
     
-    private readonly List<int?> _seed = //master
+    /*private readonly List<int?> _seed = //master
     [
         null, 8, 7,    null, null, 3,    9, null, null,
         null, 5, null,    null, null, null,    null, null, 3,
@@ -83,6 +84,21 @@ public class BoardViewModel : ViewModelBase
         4, 7, null,    null, null, null,    null, null, 2,
         null, 6, 2,    4, null, 7,    5, null, 8,
         null, 3, null,    null, 1, null,    null, 6, null,
+    ];*/
+    
+    private readonly List<int?> _seed = //extreme
+    [
+        4, 7, 9,    null, null, 5,    null, null, null,
+        null, null, null,    null, 3, null,    null, null, 8,
+        null, null, null,    null, null, null,    null, 6, null,
+
+        3, 4, null,    null, null, null,    null, null, 1,
+        null, null, 6,    null, 5, null,    null, null, 9,
+        8, null, null,    null, null, null,    null, null, 6,
+
+        null, null, null,    null, null, null,    4, 2, 7,
+        null, null, 7,    null, null, null,    null, null, null,
+        null, null, null,    1, 9, null,    null, null, null,
     ];
     
     private double _width = 300;
@@ -126,6 +142,8 @@ public class BoardViewModel : ViewModelBase
             didFindValues = await SolveSinglePossibleValuesAsync();
         }
         while(didFindValues);
+        
+        Console.WriteLine("Done Solving");
     }
 
     private async Task<bool> SolveSinglePossibleValuesAsync()
@@ -201,6 +219,45 @@ public class BoardViewModel : ViewModelBase
     private void CalculatePossibleValues()
     {
         _cells.ToList().ForEach(c => c.UpdatePossibleValues());
+
+        foreach (var c in _cells.Where(c => c.Value == null).ToList())
+        {
+            var samePossibleValues = c.Row
+                .Where(rc => c.PossibleValues.SequenceEqual(rc.PossibleValues) && rc.Value == null)
+                .ToList();
+
+            if (samePossibleValues.Count >= c.PossibleValues.Count)
+            {
+                var otherCells = c.Row.Where(rc => !samePossibleValues.Contains(rc) && rc.Value == null)
+                    .ToList();
+                    
+                otherCells.ForEach(rc => rc.RemovePossibleValues(c.PossibleValues));
+            }
+            
+            samePossibleValues = c.Column
+                .Where(rc => c.PossibleValues.SequenceEqual(rc.PossibleValues) && rc.Value == null)
+                .ToList();
+
+            if (samePossibleValues.Count >= c.PossibleValues.Count)
+            {
+                var otherCells = c.Column.Where(rc => !samePossibleValues.Contains(rc) && rc.Value == null)
+                    .ToList();
+                    
+                otherCells.ForEach(rc => rc.RemovePossibleValues(c.PossibleValues));
+            }
+            
+            samePossibleValues = c.SubGrid
+                .Where(rc => c.PossibleValues.SequenceEqual(rc.PossibleValues) && rc.Value == null)
+                .ToList();
+
+            if (samePossibleValues.Count >= c.PossibleValues.Count)
+            {
+                var otherCells = c.SubGrid.Where(rc => !samePossibleValues.Contains(rc) && rc.Value == null)
+                    .ToList();
+                    
+                otherCells.ForEach(rc => rc.RemovePossibleValues(c.PossibleValues));
+            }
+        }
     }
     
     public BoardViewModel()
