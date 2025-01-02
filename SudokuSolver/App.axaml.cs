@@ -20,6 +20,8 @@ public partial class App : Application
             desktop.MainWindow = new MainWindow
             {
                 DataContext = new MainWindowViewModel(),
+                Width = 513,
+                Height = 553
             };
         }
 

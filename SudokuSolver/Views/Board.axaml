@@ -13,9 +13,9 @@
         <vm:BoardViewModel/>
     </Design.DataContext>
     <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
-        <Border Height="{Binding Height}" Width="{Binding Width}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+        <Border VerticalAlignment="Center" HorizontalAlignment="Stretch">
             <StackPanel HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-                <Grid ColumnDefinitions="*,*,*,*,*,*,*,*,*" RowDefinitions="*,*,*,*,*,*,*,*,*" Margin="10">
+                <Grid Height="{Binding Height}" Width="{Binding Width}"  ColumnDefinitions="*,*,*,*,*,*,*,*,*" RowDefinitions="*,*,*,*,*,*,*,*,*" Margin="10">
                 <views:Cell Grid.Row="0" Grid.Column="0" DataContext="{Binding Cells[0]}"/>
                 <views:Cell Grid.Row="0" Grid.Column="1" DataContext="{Binding Cells[1]}"/>
                 <views:Cell Grid.Row="0" Grid.Column="2" DataContext="{Binding Cells[2]}"/>
@@ -106,7 +106,10 @@
                 <views:Cell Grid.Row="8" Grid.Column="7" DataContext="{Binding Cells[79]}"/>
                 <views:Cell Grid.Row="8" Grid.Column="8" DataContext="{Binding Cells[80]}"/>
             </Grid>
-                <Button Command="{Binding Solve}">Solve</Button>
+                <Border HorizontalAlignment="Center" Margin="10 0 10 10">
+                    <Button Command="{Binding Solve}">Solve</Button>
+                </Border>
+                
             </StackPanel>
         </Border>
     </ScrollViewer>

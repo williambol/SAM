@@ -34,6 +34,20 @@ public class CellViewModel : ViewModelBase
         set => this.RaiseAndSetIfChanged(ref _isFocused, value);
     }
     
+    private double _fontSize = 20;
+    public double FontSize
+    {
+        get => _fontSize;
+        set => this.RaiseAndSetIfChanged(ref _fontSize, value);
+    }
+    
+    private double _possibleValueFontSize = 20;
+    public double PossibleValueFontSize
+    {
+        get => _possibleValueFontSize;
+        set => this.RaiseAndSetIfChanged(ref _possibleValueFontSize, value);
+    }
+    
     private List<int> _possibleValues = [1,2,3,4,5,6,7,8,9];
     public List<int> PossibleValues { get => _possibleValues; set => this.RaiseAndSetIfChanged(ref _possibleValues, value); }
 

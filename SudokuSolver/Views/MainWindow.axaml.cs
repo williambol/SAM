@@ -21,8 +21,9 @@ public partial class MainWindow : Window
         {
             if (mainWindowViewModel is not null)
             {
-                var size = Math.Min(ClientSize.Width, ClientSize.Height);
-                size = Math.Max(300, size);
+                var size = Math.Min(ClientSize.Width, ClientSize.Height - 40);
+                size = Math.Max(280, size - 20);
+                Console.WriteLine(size);
                 mainWindowViewModel.Board.Width = size;
                 mainWindowViewModel.Board.Height = size;
             }
