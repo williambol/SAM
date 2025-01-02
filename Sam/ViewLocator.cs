@@ -1,9 +1,9 @@
 using System;
 using Avalonia.Controls;
 using Avalonia.Controls.Templates;
-using SudokuSolver.ViewModels;
+using Sam.ViewModels;
 
-namespace SudokuSolver;
+namespace Sam;
 
 public class ViewLocator : IDataTemplate
 {

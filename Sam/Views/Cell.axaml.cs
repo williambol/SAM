@@ -1,8 +1,8 @@
 using System;
 using Avalonia.Controls;
-using SudokuSolver.ViewModels;
+using Sam.ViewModels;
 
-namespace SudokuSolver.Views;
+namespace Sam.Views;
 
 public partial class Cell : UserControl
 {

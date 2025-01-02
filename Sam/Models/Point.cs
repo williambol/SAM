@@ -1,4 +1,4 @@
-namespace SudokuSolver.Models;
+namespace Sam.Models;
 
 public class Point
 {

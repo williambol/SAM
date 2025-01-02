@@ -1,4 +1,4 @@
-﻿namespace SudokuSolver.ViewModels;
+﻿namespace Sam.ViewModels;
 
 public class MainWindowViewModel : ViewModelBase
 {

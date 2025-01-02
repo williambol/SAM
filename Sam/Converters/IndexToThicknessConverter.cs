@@ -2,15 +2,16 @@ using System;
 using System.Globalization;
 using Avalonia;
 using Avalonia.Data.Converters;
-using Point = SudokuSolver.Models.Point;
+using Models_Point = Sam.Models.Point;
+using Point = Sam.Models.Point;
 
-namespace SudokuSolver.Converters;
+namespace Sam.Converters;
 
 public class IndexToThicknessConverter : IValueConverter
 {
     public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
     {
-        if (value is not Point point)
+        if (value is not Models_Point point)
         {
             return new Thickness(1);
         }

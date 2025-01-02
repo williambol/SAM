@@ -2,7 +2,7 @@ using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Markup.Xaml;
 
-namespace SudokuSolver.Views;
+namespace Sam.Views;
 
 public partial class Board : UserControl
 {

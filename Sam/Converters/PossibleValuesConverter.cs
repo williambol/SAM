@@ -4,7 +4,7 @@ using System.Collections.ObjectModel;
 using System.Globalization;
 using Avalonia.Data.Converters;
 
-namespace SudokuSolver.Converters;
+namespace Sam.Converters;
 
 public class PossibleValuesConverter : IValueConverter
 {

@@ -1,8 +1,8 @@
 using System;
 using Avalonia.Controls;
-using SudokuSolver.ViewModels;
+using Sam.ViewModels;
 
-namespace SudokuSolver.Views;
+namespace Sam.Views;
 
 public partial class MainWindow : Window
 {
@@ -23,7 +23,6 @@ public partial class MainWindow : Window
             {
                 var size = Math.Min(ClientSize.Width, ClientSize.Height - 40);
                 size = Math.Max(280, size - 20);
-                Console.WriteLine(size);
                 mainWindowViewModel.Board.Width = size;
                 mainWindowViewModel.Board.Height = size;
             }

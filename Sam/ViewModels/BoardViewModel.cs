@@ -5,9 +5,9 @@ using System.Linq;
 using System.Reactive;
 using System.Threading.Tasks;
 using ReactiveUI;
-using SudokuSolver.Models;
+using Sam.Models;
 
-namespace SudokuSolver.ViewModels;
+namespace Sam.ViewModels;
 
 public class BoardViewModel : ViewModelBase
 {

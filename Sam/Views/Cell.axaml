@@ -2,11 +2,11 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:vm="clr-namespace:SudokuSolver.ViewModels"
-             xmlns:converters="clr-namespace:SudokuSolver.Converters"
+             xmlns:vm="clr-namespace:Sam.ViewModels"
+             xmlns:converters="clr-namespace:Sam.Converters"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:DataType="vm:CellViewModel"
-             x:Class="SudokuSolver.Views.Cell">
+             x:Class="Sam.Views.Cell">
     <UserControl.Resources>
         <converters:IndexToThicknessConverter x:Key="IndexToThicknessConverter" />
         <converters:HasNoValueConverter x:Key="HasNoValueConverter" />

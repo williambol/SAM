@@ -1,10 +1,10 @@
 using Avalonia;
 using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Markup.Xaml;
-using SudokuSolver.ViewModels;
-using SudokuSolver.Views;
+using Sam.ViewModels;
+using Sam.Views;
 
-namespace SudokuSolver;
+namespace Sam;
 
 public partial class App : Application
 {

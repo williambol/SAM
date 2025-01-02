@@ -2,7 +2,7 @@
 using Avalonia.ReactiveUI;
 using System;
 
-namespace SudokuSolver;
+namespace Sam;
 
 sealed class Program
 {

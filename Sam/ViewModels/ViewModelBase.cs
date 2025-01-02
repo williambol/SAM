@@ -1,6 +1,6 @@
 ﻿using ReactiveUI;
 
-namespace SudokuSolver.ViewModels;
+namespace Sam.ViewModels;
 
 public class ViewModelBase : ReactiveObject
 {

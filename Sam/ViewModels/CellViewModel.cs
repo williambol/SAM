@@ -3,9 +3,9 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using DynamicData;
 using ReactiveUI;
-using SudokuSolver.Models;
+using Sam.Models;
 
-namespace SudokuSolver.ViewModels;
+namespace Sam.ViewModels;
 
 public class CellViewModel : ViewModelBase
 {
